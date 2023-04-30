@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_workshopjava" default="compile.module.workshopjava">
+  <dirname property="module.workshopjava.basedir" file="${ant.file.module_workshopjava}"/>
+  
+  <property name="module.jdk.home.workshopjava" value=""/>
+  <property name="module.jdk.bin.workshopjava" value=""/>
+  <property name="module.jdk.classpath.workshopjava" value=""/>
+  
+  <property name="compiler.args.workshopjava" value="-encoding UTF-8 -source 12 -target 12 ${compiler.args}"/>
+  
+  <property name="workshopjava.output.dir" value="undefined"/>
+  <property name="workshopjava.testoutput.dir" value="undefined"/>
+  
+  <path id="workshopjava.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="workshopjava.module.production.classpath"/>
+  
+  <path id="workshopjava.runtime.production.module.classpath"/>
+  
+  <path id="workshopjava.module.classpath"/>
+  
+  <path id="workshopjava.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.workshopjava">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.workshopjava">
+    <patternset refid="excluded.from.module.workshopjava"/>
+  </patternset>
+  
+  
+  <target name="compile.module.workshopjava" depends="compile.module.workshopjava.production,compile.module.workshopjava.tests" description="Compile module workshopjava"/>
+  
+  <target name="compile.module.workshopjava.production" depends="register.custom.compilers" description="Compile module workshopjava; production classes"/>
+  
+  <target name="compile.module.workshopjava.tests" depends="register.custom.compilers,compile.module.workshopjava.production" description="compile module workshopjava; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.workshopjava" description="cleanup module">
+    <delete dir="${workshopjava.output.dir}"/>
+    <delete dir="${workshopjava.testoutput.dir}"/>
+  </target>
+</project>
